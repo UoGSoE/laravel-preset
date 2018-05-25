@@ -1,0 +1,24 @@
+{
+    "name": "uogsoe/soe-laravel-preset",
+    "description": "Preset for Laravel",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "billy",
+            "email": "william.allan@glasgow.ac.uk"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "UogSoe\\LaravelPreset\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "UogSoe\\LaravelPreset\\PresetServiceProvider"
+            ]
+        }
+    }
+}
