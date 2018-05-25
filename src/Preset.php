@@ -1,6 +1,6 @@
 <?php
 
-namespace Laracasts\LaravelPreset;
+namespace UoGSoE\LaravelPreset;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
@@ -18,12 +18,15 @@ class Preset extends LaravelPreset
 
     public static function updatePackageArray($packages)
     {
-        return array_merge(['laravel-mix-tailwind' => '^0.1.0'], Arr::except($packages, [
-            'popper.js',
-            'lodash',
-            'jquery',
-            'bootstrap'
-        ]));
+        return array_merge(
+            ['laravel-mix-tailwind' => '^0.1.0', 'laravel-mix-purgecss' => '^2.0'],
+            Arr::except($packages, [
+                'popper.js',
+                'lodash',
+                'jquery',
+                'bootstrap'
+            ]
+        ));
     }
 
     public static function updateMix()
@@ -39,8 +42,8 @@ class Preset extends LaravelPreset
 
     public static function updateStyles()
     {
-        File::cleanDirectory(resource_path('assets/sass'));
-
-        File::put(resource_path('assets/sass/app.sass'), '');
+        File::deleteDirectory(resource_path('assets/sass'));
+        File::makeDirectory(resource_path('assets/css'));
+        copy(__DIR__.'/stubs/app.css', resource_path('assets/css/app.css'));
     }
 }

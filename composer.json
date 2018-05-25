@@ -8,16 +8,18 @@
             "email": "william.allan@glasgow.ac.uk"
         }
     ],
-    "minimum-stability": "stable",
+    "require": {
+        "laravel/framework": "^5.5"
+    },
     "autoload": {
         "psr-4": {
-            "UogSoe\\LaravelPreset\\": "src/"
+            "UoGSoE\\LaravelPreset\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "UogSoe\\LaravelPreset\\PresetServiceProvider"
+                "UoGSoE\\LaravelPreset\\PresetServiceProvider"
             ]
         }
     }
