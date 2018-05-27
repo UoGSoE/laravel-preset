@@ -14,6 +14,7 @@ class Preset extends LaravelPreset
         static::updateMix();
         static::updateScripts();
         static::updateStyles();
+        static::updateLogging();
     }
 
     public static function updatePackageArray($packages)
@@ -45,5 +46,13 @@ class Preset extends LaravelPreset
         File::deleteDirectory(resource_path('assets/sass'));
         File::makeDirectory(resource_path('assets/css'));
         copy(__DIR__.'/stubs/app.css', resource_path('assets/css/app.css'));
+    }
+
+    public static function updateLogging()
+    {
+        $loggingConfig = config('logging');
+        $loggingConfig['channels']['stack']['channels'] = ['daily'];
+        $phpCode = var_export($loggingConfig, 1);
+        File::put(config_path('logging.php'), "<?php\n return $phpCode;\n");
     }
 }
